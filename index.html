@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unni's Projects</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://images.pexels.com/photos/311039/pexels-photo-311039.jpeg?auto=compress&cs=tinysrgb&w=600');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            flex-direction: column; /* Change to column layout */
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8); /* Dark overlay for better text visibility */
+            padding: 40px;
+            border-radius: 10px;
+            border: 3px solid #ffcc00; /* Gold border for elegance */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ffcc00; /* Gold color for header */
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .button, .profile-button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #ffcc00; /* Gold background */
+            color: black;
+            text-decoration: none;
+            font-size: 1.2em;
+            border: 2px solid white; /* White border */
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .button:hover, .profile-button:hover {
+            background-color: white;
+            color: black;
+        }
+        .chatbox-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .chatbox-icon img {
+            width: 30px;
+            height: 30px;
+        }
+        .chatbox {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            max-width: 90%;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: none; /* Hidden initially */
+            flex-direction: column;
+        }
+        .chatbox-header {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .chatbox-body {
+            padding: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .chatbox-input {
+            display: flex;
+        }
+        .chatbox-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 0;
+            border-top-left-radius: 0;
+        }
+        .chatbox-input button {
+            padding: 10px;
+            border: 1px solid #4CAF50;
+            background: #4CAF50;
+            color: white;
+            border-bottom-right-radius: 10px;
+            border-top-right-radius: 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .chatbox-input button:hover {
+            background-color: #45a049;
+        }
+        .ai-drawing {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 100px; /* Adjust as needed */
+            height: auto;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            p {
+                font-size: 1em;
+            }
+            .button, .profile-button {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile Button -->
+    <a href="profile.html" class="profile-button">Profile</a>
+
+    <div class="container">
+        <h1>Unni's Projects</h1>
+        <p>Hi, I am Unnikrishnan. I'm currently studying B.Tech in Computer Science at the College of Engineering, Cherthala, and I'm in my 2nd year. This website showcases my project collection. Feel free to explore!</p>
+
+        <!-- Button for UK IT Solution -->
+        <a href="ukitsolution.html" class="button">UK IT Solution</a>
+
+        <!-- Button for Lachu2 -->
+        <a href="lachu2.html" class="button">Lachu2</a>
+
+        <!-- Button for CEC Memory -->
+        <a href="cecmemory.html" class="button">CEC Memory</a>
+    </div>
+
+    <!-- Chatbox Icon -->
+    <div class="chatbox-icon" onclick="toggleChatbox()">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/chat.png" alt="Chat">
+    </div>
+
+    <!-- Chatbox -->
+    <div class="chatbox" id="chatbox">
+        <div class="chatbox-header">Chat with AI</div>
+        <div class="chatbox-body" id="chatboxBody"></div>
+        <div class="chatbox-input">
+            <input type="text" id="chatInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- AI Drawing -->
+    <img class="ai-drawing" src="https://example.com/path/to/ai-drawing.png" alt="AI Drawing">
+
+    <script>
+        function toggleChatbox() {
+            const chatbox = document.getElementById('chatbox');
+            chatbox.style.display = chatbox.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value;
+            if (message.trim() === '') return;
+
+            // Add user message to chat
+            addMessage('You: ' + message);
+
+            // Simulate AI response
+            setTimeout(() => {
+                addMessage('AI: ' + getAIResponse(message));
+            }, 1000);
+
+            input.value = ''; // Clear input
+        }
+
+        function addMessage(message) {
+            const chatboxBody = document.getElementById('chatboxBody');
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            chatboxBody.appendChild(messageDiv);
+            chatboxBody.scrollTop = chatboxBody.scrollHeight; // Scroll to bottom
+        }
+
+        function getAIResponse(message) {
+            // Basic AI response simulation
+            const responses = [
+                "That's interesting!",
+                "Can you tell me more?",
+                "I see, go on...",
+                "That's a great point!",
+                "How can I assist you further?"
+            ];
+            return responses[Math.floor(Math.random() * responses.length)];
+        }
+    </script>
+</body>
+</html>

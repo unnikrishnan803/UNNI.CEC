@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rajalekshmi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            color: #880e4f;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-color: #ffebee;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .open-button, .back-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 10px; /* Add some margin */
+        }
+
+        .open-button {
+            background-color: #ec407a;
+        }
+
+        .open-button:hover {
+            background-color: #d81b60;
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            background-color: #007bff;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .cube-container {
+            width: 80vw; /* Responsive width */
+            max-width: 300px; /* Maximum width */
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite linear;
+            display: none; /* Initially hidden */
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .cube {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .cube div {
+            position: absolute;
+            width: 100%; /* Match the container size */
+            height: 100%; /* Shortened height for all faces */
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s;
+        }
+
+        .front { transform: rotateY(0deg) translateZ(100px); background-image: url('r1.jpg'); }
+        .back { transform: rotateY(180deg) translateZ(100px); background-image: url('r2.jpeg'); }
+        .left { transform: rotateY(-90deg) translateZ(100px); background-image: url('r1.jpg'); }
+        .right { transform: rotateY(90deg) translateZ(100px); background-image: url('r2.jpeg'); }
+        .top { transform: rotateX(90deg) translateZ(100px); background-image: url('r1.jpg'); }
+        .bottom {
+            transform: rotateX(-90deg) translateZ(100px);
+            background-color: rgba(255, 235, 238, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #880e4f;
+            text-align: center;
+            padding: 10px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes rotate {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .message, .ai-response {
+            font-size: 24px;
+            text-align: center;
+            margin-top: 20px;
+            color: #880e4f;
+            background-color: rgba(255, 235, 238, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            opacity: 0; /* Hidden initially */
+            transition: opacity 1s;
+        }
+
+        @media (max-width: 600px) {
+            .open-button, .back-button {
+                font-size: 16px; /* Smaller font size for buttons */
+                padding: 10px 20px; /* Adjust padding */
+            }
+
+            .message, .ai-response {
+                font-size: 18px; /* Smaller font size for messages */
+            }
+
+            .cube-container {
+                height: 150px; /* Adjust height for smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <video class="background-video" autoplay muted loop>
+        <source src="https://cdn.pixabay.com/video/2016/02/02/2044-154036037_large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <button class="open-button" onclick="openGift()">Open Gift</button>
+    <a href="index.html" class="back-button">Back to Main Page</a>
+
+    <div class="cube-container" id="cubeContainer">
+        <div class="cube">
+            <div class="front"></div>
+            <div class="back"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+            <div class="top"></div>
+            <div class="bottom">
+                <p style="margin: 0;">Happy Birthday, Lachuzz!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="message" id="message">
+        <p>I love you, Lachuzz!</p>
+        <p>My friend told me a beautiful girl was coming to the school. I replied, 'So what?' and left. But the beautiful girl joined NSS. I saw her for the first time in NSS; she was very beautiful, and her nose ring (mukuti) was stunning.</p>
+        <p>One day, I drew her picture and gave it to her, but it wasn't exact. Another day, I drew another picture of her from Instagram and gave it to her; she liked that picture. One day, I proposed to her, giving her a rose and a picture. She took the rose and walked away. She replied online that she had no interest in love. For many months, I loved her and proposed to her on stage, but she rejected me, breaking my heart. Finally, many months later, she accepted my love.</p>
+    </div>
+
+    <div class="ai-response" id="aiResponse"></div>
+
+    <audio id="backgroundMusic" loop>
+        <source src="tum.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function openGift() {
+            document.getElementById('cubeContainer').style.display = 'block'; // Show the cube
+            document.getElementById('backgroundMusic').play(); // Play background music
+            document.getElementById('message').style.opacity = '1'; // Show the message
+
+            // AI response generation
+            const responses = [
+                "Wishing you all the happiness in the world!",
+                "May your day be filled with love and joy!",
+                "Here's to more adventures together!",
+                "You deserve all the great things today!",
+                "Happy moments are meant to be shared!"
+            ];
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            const aiResponse = document.getElementById('aiResponse');
+            aiResponse.innerText = randomResponse;
+            aiResponse.style.opacity = '1'; // Show AI response
+        }
+    </script>
+
+</body>
+
+</html>
